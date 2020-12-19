@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 @Data
-public class PlayerAddRequest {
+public class PlayerRequest {
     @NotBlank
     @Size(max = 255)
     private String name;
