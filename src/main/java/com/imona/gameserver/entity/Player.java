@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +28,12 @@ public class Player {
 
     @Column(nullable = false)
     private Boolean active;
+
+    @ManyToOne
+    private Game game;
+
+    @OneToMany
+    private List<Action> actions;
 
 
 }
