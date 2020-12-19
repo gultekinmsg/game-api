@@ -19,6 +19,5 @@ public class Action {
     private String description;
     private Long point;
     @ManyToOne
-    private Player player;
-
+    private Game game;
 }

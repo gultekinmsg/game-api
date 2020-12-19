@@ -14,4 +14,6 @@ public class Game {
     private String description;
     @OneToMany
     private List<Player> players;
+    @OneToMany
+    private List<Action> actions;
 }
