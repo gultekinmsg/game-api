@@ -2,14 +2,14 @@ package com.imona.gameserver.controller;
 
 
 import com.imona.gameserver.entity.Player;
+import com.imona.gameserver.model.PlayerAddRequest;
 import com.imona.gameserver.model.PlayerResponse;
 import com.imona.gameserver.repository.PlayerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +33,14 @@ public class PlayerController {
         }
         return models;
     }
+
+    @PostMapping("/player")
+    public void addPlayer(@RequestBody @Valid PlayerAddRequest playerAddRequest){
+        Player player = new Player();
+        BeanUtils.copyProperties(playerAddRequest,player);
+        playerRepository.save(player);
+    }
+   
+
 }
 
