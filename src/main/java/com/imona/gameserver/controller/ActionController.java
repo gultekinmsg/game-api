@@ -6,6 +6,7 @@ import com.imona.gameserver.repository.ActionRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -20,9 +21,8 @@ public class ActionController {
         this.actionRepository = actionRepository;
     }
 
-
     @GetMapping("/action/{gameId}")
-    public List<ActionResponse> getActions(Long gameId){
+    public List<ActionResponse> getActions(@PathVariable Long gameId){
         List<Action> entities = actionRepository.findByGameId(gameId);
         List<ActionResponse> models = new ArrayList<>();
         for (Action entity : entities) {

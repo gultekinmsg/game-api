@@ -1,19 +1,16 @@
 package com.imona.gameserver.controller;
 
-
 import com.imona.gameserver.entity.Player;
-import com.imona.gameserver.model.PlayerRequest;
 import com.imona.gameserver.model.PlayerResponse;
 import com.imona.gameserver.repository.PlayerRepository;
-import net.bytebuddy.implementation.auxiliary.PrivilegedMemberLookupAction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class PlayerController {
@@ -34,32 +31,5 @@ public class PlayerController {
             models.add(model);
         }
         return models;
-    }
-
-    @PostMapping("/player")
-    public void addPlayer(@RequestBody @Valid PlayerRequest playerRequest) {
-        Player player = new Player();
-        BeanUtils.copyProperties(playerRequest, player);
-        playerRepository.save(player);
-    }
-
-    @PutMapping("/player/{playerId}")
-    public void editPlayer(@RequestBody @Valid PlayerRequest playerRequest, @PathVariable Long playerId) {
-        Player playerEntity = getPlayer(playerId);
-        BeanUtils.copyProperties(playerRequest,playerEntity);
-        playerRepository.save(playerEntity);
-    }
-
-    @DeleteMapping("/player/{playerId}")
-    public void deletePlayer(@PathVariable Long playerId){
-        playerRepository.delete(getPlayer(playerId));
-    }
-
-    private Player getPlayer(Long playerId){
-        Optional<Player> player = playerRepository.findById(playerId);
-        if (player.isEmpty()) {
-            throw new NullPointerException();
-        }
-        return player.get();
     }
 }
