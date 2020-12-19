@@ -23,6 +23,7 @@ public class Player {
     @Column(nullable = false)
     private Boolean active;
     @ManyToOne
+    @JoinColumn(name="game_id")
     private Game game;
 
 }

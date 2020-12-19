@@ -16,5 +16,6 @@ public class Action {
     private String description;
     private Long point;
     @ManyToOne
+    @JoinColumn(name="game_id")
     private Game game;
 }

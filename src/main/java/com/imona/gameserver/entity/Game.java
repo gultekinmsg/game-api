@@ -12,8 +12,8 @@ public class Game {
     private Long id;
     private String name;
     private String description;
-    @OneToMany
+    @OneToMany(mappedBy = "game")
     private List<Player> players;
-    @OneToMany
+    @OneToMany(mappedBy = "game")
     private List<Action> actions;
 }
