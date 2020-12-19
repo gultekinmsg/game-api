@@ -1,4 +1,5 @@
 package com.imona.gameserver.model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.imona.gameserver.entity.Gender;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class PlayerRequest {
     @NotNull
     private Gender gender;
     @NotNull
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDate;
     @NotBlank
     @Size(max = 255)
